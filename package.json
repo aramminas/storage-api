@@ -1,12 +1,12 @@
 {
   "name": "storage-api",
   "version": "1.0.0",
-  "main": "api/server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
-    "start": "node api/server.js",
-    "dev": "nodemon api/server.js"
+    "server": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
