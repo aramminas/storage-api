@@ -1,13 +1,12 @@
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
-const { ValidationError } = require('express-validation');
 require('dotenv').config();
 
 const routes = require('./routes');
-const { Status } = require('./assets/constants.js');
 const corsOptions = require('./configs/corsOptions.js');
 const welcomeTemplates = require('./assets/welcomeTemplates.js');
+const middlewares = require('./middlewares');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,13 +25,8 @@ app.use(cors(corsOptions));
 app.use('/api', routes);
 
 // validation error handling
-app.use((err, req, res, next) => {
-  if (err instanceof ValidationError) {
-    return res.status(err.statusCode).json(err);
-  }
-
-  return res.status(Status.SERVER_ERROR).json(err);
-});
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
 
 mongoose
   .connect(mongoDbUrl)
