@@ -1,4 +1,5 @@
-const statusCodes = {
+// Status Codes = {
+export const Status = {
   OK: 200,
   CREATED: 201,
   BAD_REQUEST: 400,
@@ -6,7 +7,5 @@ const statusCodes = {
   SERVER_ERROR: 500,
 };
 
-const difficulties = ['easy', 'medium', 'hard', 'extraHard'];
-const taskTypes = ['logical', 'common'];
-
-module.exports = { Status: statusCodes, difficulties, taskTypes };
+export const difficulties = ['easy', 'medium', 'hard', 'extraHard'];
+export const taskTypes = ['logical', 'common'];

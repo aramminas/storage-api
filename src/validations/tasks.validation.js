@@ -1,7 +1,7 @@
-const { Joi } = require('express-validation');
-const { difficulties, taskTypes } = require('../assets/constants.js');
+import { Joi } from 'express-validation';
+import { difficulties, taskTypes } from '../assets/constants.js';
 
-const taskValidation = {
+export const taskValidation = {
   body: Joi.object({
     question: Joi.string().min(10).required(),
     answer: Joi.string().optional().empty(''),
@@ -13,5 +13,3 @@ const taskValidation = {
     complexity: Joi.string().valid(...difficulties),
   }),
 };
-
-module.exports = { taskValidation };

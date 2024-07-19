@@ -1,22 +1,42 @@
-import express from 'express'
-import cors from 'cors'
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import { config } from 'dotenv';
+
+config();
+
+import routes from './src/routes/index.js';
+import corsOptions from './src/configs/corsOptions.js';
+import welcomeTemplates from './src/assets/welcomeTemplates.js';
+import middlewares from './src/middlewares/index.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
+const mongoDbUrl = process.env.MONGO_DB_URL || '';
 
+// middleware
 app.use(express.json());
-
-// Enable CORS for all routes
-app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-  res.send('Express server working! storage-api')
-})
+  res.set('Content-Type', 'text/html');
+  res.send(Buffer.from(welcomeTemplates));
+});
 
-app.get("/about", (req, res) => {
-    res.json({"message": "Welcome to the about page storage-api"})
-})
+app.use(cors(corsOptions));
+app.use('/api', routes);
 
-app.listen(port, () => {
-    console.log("Sergeant we have a server on the loose...someone catch it");
-})
+// validation error handling
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
+
+mongoose
+  .connect(mongoDbUrl)
+  .then(() => {
+    console.log('Database Connected!');
+
+    app.listen(port, () => {
+      console.log('The server is running on the port %s', port);
+    });
+  })
+  .catch((error) => console.log('Connection failed!', error));

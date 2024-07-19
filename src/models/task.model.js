@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const { difficulties, taskTypes } = require('../assets/constants.js');
+import { difficulties, taskTypes } from '../assets/constants.js';
 
 const TaskSchema = mongoose.Schema(
   {
@@ -44,4 +44,4 @@ const TaskSchema = mongoose.Schema(
 
 const Task = mongoose.model('Task', TaskSchema);
 
-module.exports = Task;
+export default Task;

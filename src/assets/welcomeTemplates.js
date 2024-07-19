@@ -119,4 +119,4 @@ const welcomeTemplates = `
 
 `;
 
-module.exports = welcomeTemplates;
+export default welcomeTemplates;

@@ -1,5 +1,6 @@
-const { ValidationError } = require('express-validation');
-const { Status } = require('../assets/constants.js');
+import { ValidationError } from 'express-validation';
+import { Status } from '../assets/constants.js';
+
 const nodeMode = process.env.NODE_ENV || '';
 
 function notFound(req, res, next) {
@@ -21,7 +22,7 @@ function errorHandler(err, req, res, next) {
   });
 }
 
-module.exports = {
+export default {
   notFound,
   errorHandler,
 };

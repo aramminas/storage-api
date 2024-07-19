@@ -1,15 +1,16 @@
-const express = require('express');
-const { validate } = require('express-validation');
+import express from 'express';
+import { validate } from 'express-validation';
 
-const router = express.Router();
-const {
+import {
   getTask,
   getTasks,
   createTask,
   updateTask,
   deleteTask,
-} = require('../controllers/task.controller.js');
-const { taskValidation } = require('../validations/tasks.validation.js');
+} from '../controllers/task.controller.js';
+import { taskValidation } from '../validations/tasks.validation.js';
+
+const router = express.Router();
 
 // GET
 // get all tasks
@@ -30,4 +31,4 @@ router.put('/:id', validate(taskValidation, {}, {}), updateTask);
 // delete a task
 router.delete('/:id', deleteTask);
 
-module.exports = router;
+export default router;

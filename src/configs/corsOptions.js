@@ -7,4 +7,4 @@ const corsOptions = {
   origin: allowList,
 };
 
-module.exports = corsOptions;
+export default corsOptions;

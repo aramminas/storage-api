@@ -1,6 +1,6 @@
-const { difficulties, taskTypes } = require('../assets/constants.js');
+import { difficulties, taskTypes } from '../assets/constants.js';
 
-const createTaskDto = (task) => {
+export const createTaskDto = (task) => {
   const {
     question,
     answer = '',
@@ -24,7 +24,7 @@ const createTaskDto = (task) => {
   };
 };
 
-const updateTaskDto = (task) => {
+export const updateTaskDto = (task) => {
   const { question, answer, code, answerCode, answerOptions, favorite, type, complexity } = task;
 
   const updatedData = { question };
@@ -68,5 +68,3 @@ const updateTaskDto = (task) => {
     complexity,
   };
 };
-
-module.exports = { createTaskDto, updateTaskDto };

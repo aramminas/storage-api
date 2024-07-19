@@ -1,9 +1,9 @@
-const { handleError } = require('../utils');
-const Task = require('../models/task.model.js');
-const { Status } = require('../assets/constants.js');
-const { createTaskDto, updateTaskDto } = require('../dto/taskDto');
+import { handleError } from '../utils/index.js';
+import Task from '../models/task.model.js';
+import { Status } from '../assets/constants.js';
+import { createTaskDto, updateTaskDto } from '../dto/taskDto.js';
 
-const getTasks = async (req, res) => {
+export const getTasks = async (req, res) => {
   try {
     const where = Object.keys(req.query).length ? req.query : {};
 
@@ -15,7 +15,7 @@ const getTasks = async (req, res) => {
   }
 };
 
-const getTask = async (req, res) => {
+export const getTask = async (req, res) => {
   try {
     const { id } = req.params;
     const task = await Task.findById(id);
@@ -25,7 +25,7 @@ const getTask = async (req, res) => {
   }
 };
 
-const createTask = async (req, res) => {
+export const createTask = async (req, res) => {
   try {
     const task = await Task.create(createTaskDto(req.body));
     res.status(Status.CREATED).json(task);
@@ -34,7 +34,7 @@ const createTask = async (req, res) => {
   }
 };
 
-const updateTask = async (req, res) => {
+export const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -51,7 +51,7 @@ const updateTask = async (req, res) => {
   }
 };
 
-const deleteTask = async (req, res) => {
+export const deleteTask = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -65,12 +65,4 @@ const deleteTask = async (req, res) => {
   } catch (error) {
     handleError(res, error);
   }
-};
-
-module.exports = {
-  getTasks,
-  getTask,
-  createTask,
-  updateTask,
-  deleteTask,
 };

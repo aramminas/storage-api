@@ -1,8 +1,9 @@
-const routes = require('express').Router();
-
+import { Router } from 'express';
 // api routes
-const tasks = require('./tasks.route.js');
+import tasks from './tasks.route.js';
+
+const routes = Router();
 
 routes.use('/tasks', tasks);
 
-module.exports = routes;
+export default routes;
