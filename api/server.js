@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const { ValidationError } = require('express-validation');
 require('dotenv').config();
 
-const routes = require('./routes');
-const { Status } = require('./assets/constants.js');
-const corsOptions = require('./configs/corsOptions.js');
-const welcomeTemplates = require('./assets/welcomeTemplates.js');
+const routes = require('../routes');
+const { Status } = require('../assets/constants.js');
+const corsOptions = require('../configs/corsOptions.js');
+const welcomeTemplates = require('../assets/welcomeTemplates.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
