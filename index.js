@@ -3,10 +3,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const routes = require('./routes');
-const corsOptions = require('./configs/corsOptions.js');
-const welcomeTemplates = require('./assets/welcomeTemplates.js');
-const middlewares = require('./middlewares');
+const routes = require('./src/routes');
+const corsOptions = require('./src/configs/corsOptions.js');
+const welcomeTemplates = require('./src/assets/welcomeTemplates.js');
+const middlewares = require('./src/middlewares');
 
 const app = express();
 const port = process.env.PORT || 3000;
